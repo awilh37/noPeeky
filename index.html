@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0a0e27">
+    <title>game</title>
+    <link rel="stylesheet" href="style.css?v=1.1">
+</head>
+<body>
+    <!-- Boot Screen -->
+    <div id="bootScreen" class="boot-screen active">
+        <div class="boot-container">
+            <div class="boot-text">
+                <p class="boot-line">Initializing jsEmulator...</p>
+                <p class="boot-line" style="animation-delay: 0.5s">Loading kernel module...</p>
+                <p class="boot-line" style="animation-delay: 1.25s">[OK] System initialized</p>
+                <p class="boot-line" style="animation-delay: 2s">[OK] Graphics driver loaded</p>
+                <p class="boot-line" style="animation-delay: 2.2s">[OK] Audio subsystem ready</p>
+                <p class="boot-line" style="animation-delay: 2.5s">[OK] Game files loaded</p>
+                <p class="boot-line" style="animation-delay: 3s"> Confirm loss of The Game... </p>
+                <p class="boot-line" style="animation-delay: 4s"> [TRUE] </p>
+                <p class="boot-line" style="animation-delay: 5.25s">Press ENTER or SPACE to run game.js</p>
+                <p class="boot-line boot-prompt" style="animation-delay: 5.5s">&gt;</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="game-screen">
+        <div class="cv-game-container">
+            <!-- Castlevania-style game view -->
+            <div class="cv-game-view">
+                <div class="cv-background">
+                    <div class="cv-sky"></div>
+                    <div class="cv-castle">
+                        <div class="castle-tower tower-left"></div>
+                        <div class="castle-tower tower-right"></div>
+                        <div class="castle-wall"></div>
+                        <div class="cv-stairs stairs-left"></div>
+                        <div class="cv-stairs stairs-right"></div>
+                    </div>
+                    <div class="cv-foreground">
+                        <div id="menuPlayer" class="cv-player menu-player">
+                            <div class="player-anim"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game UI Overlay -->
+            <div class="cv-ui-overlay">
+                <!-- Title -->
+                <div class="cv-title">titleText</div>
+                
+                <!-- Stats Bar -->
+                <div class="cv-stats-bar">
+                    <div class="stat-hp">
+                        <span class="stat-label">HP</span>
+                        <div class="stat-video" id="menuHP">██████░░░░</div>
+                    </div>
+                    <div class="stat-level">
+                        <span class="stat-label">LV</span>
+                        <span class="stat-value">1</span>
+                    </div>
+                </div>
+                
+                <!-- Menu -->
+                <div class="cv-menu">
+                    <div class="menu-item" style="opacity: 0.5">CONTINUE</div>
+                    <div class="menu-item menu-selected" id="playButton">▶ START GAME</div>
+                    <div class="menu-item" style="opacity: 0.5">OPTION</div>
+                </div>
+                
+                <!-- Controls hint -->
+                <div class="controls-hint">Press ENTER or SPACE to continue...</div>
+            </div>
+
+            <!-- Screen scanlines effect -->
+            <div class="cv-scanlines"></div>
+        </div>
+    </div>
+
+    <!-- Game Level Screen -->
+    <div id="levelScreen" class="level-screen">
+        <div class="level-container">
+            <div class="level-title" id="roomTitle">Entrance Hall</div>
+            
+            <div class="game-world">
+                <!-- Canvas for game -->
+                <canvas id="gameCanvas"></canvas>
+            </div>
+            
+            <!-- UI -->
+            <div class="level-ui">
+                <div class="level-hp">❤️ <span id="levelHP">6</span>/6</div>
+                <div class="level-inventory">Items: <span id="itemDisplay">-</span></div>
+                <div class="level-info" id="levelInfo">-</div>
+            </div>
+            
+            <div class="cv-scanlines"></div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-title">Loading Game...</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="loading-message" id="loadingMessage">Initializing game engine...</div>
+        </div>
+    </div>
+
+    <!-- April Fools Reveal Screen -->
+    <div id="foolsScreen" class="fools-screen">
+        <div class="cv-game-container cv-fools-container">
+            <div class="cv-game-view cv-fools-view">
+                <div class="cv-background cv-fools-bg">
+                    <div class="fools-confetti-bg"></div>
+                </div>
+            </div>
+            
+            <div class="cv-fools-content">
+                <div class="fools-title">APRIL FOOLS!</div>
+                <div class="fools-subtitle">You've been pranked!</div>
+                
+                <div class="fools-message-box">
+                    <p>You fell for it!</p>
+                    <p>There is no game... (yet)</p>
+                    <p>Tee hee!</p>
+                </div>
+                
+                <div class="fools-emoji-display">
+                    😂 🎮 💀 🎪 🥚
+                </div>
+                
+                <div class="fools-footer-text">
+                    Prepare yourself over the next couple months for the real game drop...
+                </div>
+                
+                <button id="restartButton" class="cv-menu-btn">
+                    ▶ PLAY AGAIN
+                </button>
+                <button id="continueButton" class="cv-menu-btn" style="display: none; margin-top: 20px;">
+                    ▶ CONTINUE TO DUNGEON
+                </button>
+            </div>
+            
+            <div class="cv-scanlines"></div>
+        </div>
+    </div>
+
+    <script src="script.js?v=1.0"></script>
+</body>
+</html>

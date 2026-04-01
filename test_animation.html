@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.msg {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+<body>
+<p class="msg" style="animation-delay: 0.3s">Line 1</p>
+<p class="msg" style="animation-delay: 0.8s">Line 2</p>
+<p class="msg" style="animation-delay: 1.5s">Line 3</p>
+</body>
+</html>
